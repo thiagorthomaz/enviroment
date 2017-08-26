@@ -1,6 +1,6 @@
 # Enviroment
 
-I started to small project to practice my Shell script skill. It will set up a LAMP development enviroment on a Ubuntu flavor.
+I started this small project to practice my Shell script habilities. It will set up a LAMP development enviroment on a Ubuntu flavor.
 
 Requirement:
  - Ubuntu 16.04+
