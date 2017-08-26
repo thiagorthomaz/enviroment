@@ -21,7 +21,7 @@ function _MENU() {
 
 	echo "============================================="
 	echo "Hello, $(whoami)"
-	echo "Welcomed to my enviroment configurator"
+	echo "Welcome to my enviroment configurator"
 	echo "============================================="
 	echo ""
 	echo "I've seen that you're using:"
