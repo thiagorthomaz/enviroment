@@ -25,7 +25,7 @@ function _MENU() {
 	echo "============================================="
 	echo ""
 	echo "I've seen that you're using:"
-	echo "$(lsb_release -a)"
+	lsb_release -a
 	echo ""
 
 
