@@ -21,7 +21,7 @@ function _MENU() {
 
 	echo "============================================="
 	echo "Hello, $(whoami)"
-	echo "Welcome to my enviroment configurator"
+	echo "Welcome to my environment configurator"
 	echo "============================================="
 	echo ""
 	echo "I've seen that you're using:"
@@ -90,9 +90,35 @@ function _BACK() {
 }
 
 function _INSTALL() {
+	echo "---------------------------"
+	echo "Installing apache2"
+	echo "---------------------------"
+	sudo apt-get install apache2 apache2-utils
 
-	echo "Install programs"
+        echo "---------------------------"
+        echo "Installing php"
+        echo "---------------------------"
+        sudo apt-get install php php-cli php-gd php-mysql
 
+        echo "---------------------------"
+        echo "Installing libapache2-mod-php"
+        echo "---------------------------"
+        sudo apt-get install libapache2-mod-php
+
+
+	echo ""
+        echo "---------------------------"
+	echo "Restarting service: Apache "
+        echo "---------------------------"
+
+
+
+	echo ""
+	echo ""
+	echo ""
+        echo "---------------------------"
+        echo " - Done."
+        echo "---------------------------"
 
 	_BACK
 }
