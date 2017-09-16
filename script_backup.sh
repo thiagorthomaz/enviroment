@@ -11,9 +11,9 @@
 
 clear
 
-source backup.conf
-#dir_from="home"
-#dir_to="tmp"
+#source backup.conf
+dir_from="home"
+dir_to="tmp"
 
 echo "============================================="
 echo "Hello, $(whoami)"
@@ -66,14 +66,23 @@ function _INCREMENTAL(){
 }
 
 function _DIFFERENTIAL_RECOVER() {
-	#cpio -idv --no-absolute-filenames < /tmp/home_full.cpio
-echo "Differential recover"
+	echo ""
+	echo "Differential recover"
+        #destination="/tmp/differential_bkp_recovered"
+        #[ ! -d $destination ] && mkdir -p $destination
+        #[ ! -d $destination ] && { echo "$(date): Impossible to create directory: $destination"; exit 1; }
+        #cd $destination
+	_FULL_RECOVER
+
+        cpio -idv --no-absolute-filenames < "/"$dir_to"/"$dir_from"_differential.cpio"
+
 }
 
 function _DIFFERENTIAL() {
 
         from="/$dir_from"
         to="/$dir_to/"$dir_from"_differential.cpio"
+	to_full="/$dir_to/"$dir_from"_full.cpio"
         log="/$dir_to/"$dir_from"_differential.log"
         echo ""
         echo "You selected the DIFFERENTIAL bkp."
@@ -83,7 +92,7 @@ function _DIFFERENTIAL() {
         echo ""
 
 	#find /root -cnewer /tmp/bkp_full.cpio | cpio -ov > /tmp/bkp_diferencial.cpio 2> /tmp/bkp_diferencial.log
-	find $from -cnewer $to | cpio -ov > $to 2> $log
+	find $from -cnewer $to_full | cpio -ov > $to 2> $log
 }
 
 function _EXIT() {
@@ -111,6 +120,7 @@ read -n1 op
                 2 ) _INCREMENTAL;;
                 3 ) _DIFFERENTIAL;;
 		4 ) _FULL_RECOVER;;
+		5 ) _DIFFERENTIAL_RECOVER;;
                 * ) EXIT;;
         esac
 
